@@ -1,17 +1,17 @@
 <div class="container">
   <form [formGroup]="newOfferForm">
     <div class="form-group">
-      <label for="urlToOffer">Email address</label>
+      <label for="urlToOffer">*URL</label>
       <input type="text" class="form-control" id="urlToOffer1" aria-describedby="emailHelp" placeholder="Enter URL" formControlName="url">
     </div>
     <div class="form-group">
-      <label for="nickname">Password</label>
+      <label for="nickname">*Password</label>
       <input type="text" class="form-control" id="nickname" placeholder="Nick" formControlName="nick">
     </div>
     <div class="form-group">
-      <label for="comment">Comment</label>
+      <label for="comment">*Comment</label>
       <input type="text" class="form-control" id="comment" placeholder="Comment" formControlName="comment">
     </div>
-    <button type="submit" class="btn btn-primary" (click)="onSubmit()">Submit</button>
+    <button type="submit" class="btn btn-primary" [disabled]="!newOfferForm.valid" (click)="onSubmit()">Submit</button>
   </form>
 </div>

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { AngularFireDatabase } from '@angular/fire/compat/database';
 
 
@@ -11,21 +11,19 @@ import { AngularFireDatabase } from '@angular/fire/compat/database';
 export class AddOfferComponent implements OnInit {
 
   constructor(
-    private db: AngularFireDatabase
+    private db: AngularFireDatabase,
+    private fb: FormBuilder
   ) {}
-  newOfferForm = new FormGroup({
-    url: new FormControl(''),
-    nick: new FormControl(''),
-    comment: new FormControl('')
+  newOfferForm = this.fb.group({
+    url: ['', [Validators.required, Validators.pattern(/^(?:http(s)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$/g)]],
+    nick: ['', [Validators.required]],
+    comment: ['', [Validators.required]]
   })
 
-
-  ngOnInit(): void {
-
-  }
+  ngOnInit(): void {}
 
   public onSubmit() {
     console.log(this.newOfferForm.value);
-    this.db.list('test').push(this.newOfferForm.value);
+    this.db.list('offers').push(this.newOfferForm.value);
   }
 }

@@ -3,7 +3,17 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  firebaseConfig: {
+    apiKey: "AIzaSyC3CDJ0nWaneSA_NhISC26rbN0AGdGLvH8",
+    authDomain: "pinokio-develop.firebaseapp.com",
+    databaseURL: "https://pinokio-develop-default-rtdb.firebaseio.com",
+    projectId: "pinokio-develop",
+    storageBucket: "pinokio-develop.appspot.com",
+    messagingSenderId: "333280821057",
+    appId: "1:333280821057:web:666891590f4e9aca0debc0",
+    measurementId: "G-93M7SCN5KJ"
+  }
 };
 
 /*

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { AngularFireDatabase } from '@angular/fire/compat/database';
+
 
 @Component({
   selector: 'app-add-offer',
@@ -8,7 +10,9 @@ import { FormControl, FormGroup } from '@angular/forms';
 })
 export class AddOfferComponent implements OnInit {
 
-  constructor() {}
+  constructor(
+    private db: AngularFireDatabase
+  ) {}
   newOfferForm = new FormGroup({
     url: new FormControl(''),
     nick: new FormControl(''),
@@ -17,9 +21,11 @@ export class AddOfferComponent implements OnInit {
 
 
   ngOnInit(): void {
+
   }
 
   public onSubmit() {
     console.log(this.newOfferForm.value);
+    this.db.list('test').push(this.newOfferForm.value);
   }
 }
